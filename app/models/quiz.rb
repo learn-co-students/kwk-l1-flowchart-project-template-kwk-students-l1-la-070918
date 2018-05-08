@@ -2,8 +2,20 @@ class Quiz
   attr_accessor :id, :title, :questions, :answers
   @@all = []
   
+  def initialize(id, title)
+    @id = id
+    @questions = []
+    @answers = []
+    @title = title
+    save
+  end
+
   def self.find_by_id(id)
     @@all.detect{|q| q.id.to_s == id.to_s}
+  end
+
+  def self.all
+    @@all
   end
 
   def next_step(step_id)
@@ -22,22 +34,10 @@ class Quiz
     @answers.detect{|a| a.id == step_id}
   end
 
-  def initialize(id, title)
-    @id = id
-    @questions = []
-    @answers = []
-    @title = title
-    save
-  end
-
   def save
     @@all << self
   end
   
-  def self.all
-    @@all
-  end
-
   def add_question(question)
     self.questions << question
   end
