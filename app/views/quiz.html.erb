@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>KWK Quiz Template</title>
+</head>
+
+<body>
+  <h1><%= @quiz.title %></h1>
+  
+  <form action="/quiz/<%= @quiz.id %>" method="POST">
+    <h2><%= @question.text %></h2>
+    <% @question.answers.each do |text, next_step| %>
+      <li>
+        <%= text %>
+        <input type="radio" name="next_step" value="<%= next_step %>" />
+      </li>
+    <% end %>
+  
+    <input type="submit">
+  </form>
+
+</body>
+
+</html>
