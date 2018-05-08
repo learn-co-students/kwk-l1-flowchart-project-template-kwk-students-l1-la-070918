@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     @next_step = @quiz.next_step(params[:next_step]) 
     
     if @next_step.is_a?(Answer)
-      redirect "/quiz/:id/results/#{@next_step.id}"
+      redirect "/quiz/#{@quiz.id}/results/#{@next_step.id}"
     else
       @question = @next_step
 
