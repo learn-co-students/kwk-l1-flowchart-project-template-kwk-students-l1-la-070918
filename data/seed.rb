@@ -33,7 +33,7 @@ q6 = Question.new(:id => "Q6", :text => "Will there be free food?", :answers => 
 
 a1 = Answer.new(:id => "A1", :text => "Stay In")
 a2 = Answer.new(:id => "A2", :text => "Go Out")
-a2 = Answer.new(:id => "A3", :text => "Ya, go out, have a ball!")
+a3 = Answer.new(:id => "A3", :text => "Ya, go out, have a ball!")
 
 quiz.add_question(q1)
 quiz.add_question(q2)
