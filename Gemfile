@@ -5,8 +5,11 @@ gem 'rake'
 gem 'require_all'
 
 group :development do
-  gem 'pry'
   gem 'shotgun'
+end
+
+group :development, :test do
+  gem 'pry'
 end
 
 group :production do
@@ -14,7 +17,6 @@ group :production do
 end
 
 group :test do
-  gem 'pry'
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
