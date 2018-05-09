@@ -17,10 +17,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/quiz/:id' do
-    @quiz = Quiz.find_by_id(params[:id])    
-    @next_step = @quiz.next_step(params[:next_step]) 
-    
-    if @next_step.is_a?(Answer)
+    @quiz = Quiz.find_by_id(params[:id])
+    @next_step = @quiz.next_step(params[:next_step])
+
+    if @next_step.is_a?(Result)
       redirect "/quiz/#{@quiz.id}/results/#{@next_step.id}"
     else
       @question = @next_step
@@ -29,9 +29,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get "/quiz/:id/results/:answer_id" do
-    @quiz = Quiz.find_by_id(params[:id]) 
-    @answer = @quiz.find_answer(params[:answer_id])
+  get "/quiz/:id/results/:result_id" do
+    @quiz = Quiz.find_by_id(params[:id])
+    @result = @quiz.find_result(params[:result_id])
     erb :"results.html"
   end
 end

@@ -1,11 +1,11 @@
 class Quiz
-  attr_accessor :id, :title, :questions, :answers
+  attr_accessor :id, :title, :questions, :results
   @@all = []
-  
+
   def initialize(id, title)
     @id = id
     @questions = []
-    @answers = []
+    @results = []
     @title = title
     save
   end
@@ -21,8 +21,8 @@ class Quiz
   def next_step(step_id)
     if step_id.start_with?("Q")
       find_question(step_id)
-    elsif step_id.start_with?("A")
-      find_answer(step_id)    
+    elsif step_id.start_with?("R")
+      find_result(step_id)
     end
   end
 
@@ -30,19 +30,19 @@ class Quiz
     @questions.detect{|q| q.id == step_id}
   end
 
-  def find_answer(step_id)
-    @answers.detect{|a| a.id == step_id}
+  def find_result(step_id)
+    @results.detect{|r| r.id == step_id}
   end
 
   def save
     @@all << self
   end
-  
+
   def add_question(question)
     self.questions << question
   end
 
-  def add_answer(answer)
-    self.answers << answer
+  def add_result(result)
+    self.results << result
   end
 end

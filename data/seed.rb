@@ -31,9 +31,9 @@ q6 = Question.new(:id => "Q6", :text => "Will there be free food?", :answers => 
     "No" => "A1"
 })
 
-a1 = Answer.new(:id => "A1", :text => "Stay In")
-a2 = Answer.new(:id => "A2", :text => "Go Out")
-a3 = Answer.new(:id => "A3", :text => "Ya, go out, have a ball!")
+r1 = Result.new(:id => "R1", :text => "Stay In")
+r2 = Result.new(:id => "R2", :text => "Go Out")
+r3 = Result.new(:id => "R3", :text => "Ya, go out, have a ball!")
 
 quiz.add_question(q1)
 quiz.add_question(q2)
@@ -42,6 +42,6 @@ quiz.add_question(q4)
 quiz.add_question(q5)
 quiz.add_question(q6)
 
-quiz.add_answer(a1)
-quiz.add_answer(a2)
-quiz.add_answer(a3)
+quiz.add_answer(r1)
+quiz.add_answer(r2)
+quiz.add_answer(r3)
