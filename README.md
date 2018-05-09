@@ -223,6 +223,9 @@ Finally, make sure the form has an `<input>` or `<button>` of type submit so you
 
 ### POST `/quiz/:id`
 
+This is perhaps the most complicated part of the application, building the route that accepts the answer the person gave, loads the next step of the decision tree, and either redirects to a result or loads the next question and renders the `app/views/quiz.html.erb` form with the new question.
+
+
 ### GET `/quiz/:id/results/:result_id`
 
 ## Debugging

@@ -7,27 +7,27 @@ q1 = Question.new(:id => "Q1", :text => "Are you tired?", :answers => {
 
 q2 = Question.new(:id => "Q2", :text => "Is the event important?", :answers => {
     "Yes" => "Q4",
-    "No" => "A1"
+    "No" => "R1"
 })
 
 q3 = Question.new(:id => "Q3", :text => "Think you'll have fun?", :answers => {
-    "Yes" => "A3",
+    "Yes" => "R3",
     "Maybe" => "Q5",
     "No" => "Q2"
 })
 
 q4 = Question.new(:id => "Q4", :text => "Is this the only time you can go?", :answers => {
-    "Yes" => "A2",
+    "Yes" => "R2",
     "No" => "Q6"
 })
 
 q5 = Question.new(:id => "Q5", :text => "Will you be with friends?", :answers => {
-    "Yes" => "A2",
+    "Yes" => "R2",
     "No" => "Q6"
 })
 
 q6 = Question.new(:id => "Q6", :text => "Will there be free food?", :answers => {
-    "Yes" => "A2",
+    "Yes" => "R2",
     "No" => "A1"
 })
 
