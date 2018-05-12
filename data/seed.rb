@@ -1,4 +1,4 @@
-quiz = Quiz.new(1, "Should I go out tonight?")
+quiz = Quiz.new(1, "SAMPLE: Should I go out tonight?")
 
 q1 = Question.new(:id => "Q1", :text => "Are you tired?", :answers => {
     "Yes" => "Q2",
@@ -42,6 +42,6 @@ quiz.add_question(q4)
 quiz.add_question(q5)
 quiz.add_question(q6)
 
-quiz.add_answer(r1)
-quiz.add_answer(r2)
-quiz.add_answer(r3)
+quiz.add_result(r1)
+quiz.add_result(r2)
+quiz.add_result(r3)

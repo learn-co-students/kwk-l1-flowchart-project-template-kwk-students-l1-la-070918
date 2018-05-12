@@ -154,6 +154,9 @@ r1 = quiz.next_step("R1") #=> #<Result @id="R1">
 
 ### `data/seed.rb`
 
+Once you have your models all setup, you'll want to build out the data for your quiz before building the controllers and views. Inside of `data/seed.rb` you can see a sample setup of a quiz with questions and results. It uses the model methods you just built to create all the data the application will need.
+
+Define your quizzes, questions, and results in this file so that when your Sinatra application loads, it actually has data. If you get an error when booting up your application, check the backtrace and see if it's originating from `data/seed.rb`.
 
 ## Controllers and Views
 
@@ -225,22 +228,45 @@ Finally, make sure the form has an `<input>` or `<button>` of type submit so you
 
 This is perhaps the most complicated part of the application, building the route that accepts the answer the person gave, loads the next step of the decision tree, and either redirects to a result or loads the next question and renders the `app/views/quiz.html.erb` form with the new question.
 
+Load the quiz instance from the id in `params`. Use the `#next_step` instance method on the quiz, passing in the value from the radio input the person selected, located in `params[:next_step]`. It might look something like:
 
+```ruby
+post '/quiz/:id' do
+  @quiz = Quiz.find_by_id(params[:id])
+  @next_step = @quiz.next_step(params[:next_step])
+```
+
+Then, you have to check if the return value from `#next_step` is an instance of `Result` or an instance of `Question`. If it's a `Result`, redirect them to the results page located at `/quiz/:id/results/:result_id`, otherwise, put the question into an instance variable called `@question` (or whatever you named it in the previous route), so that you can re-render the `app/views/quiz.html.erb` view. By using consistent instance variable names, we can re-use views. __Hint: You can check the class of an object via [`#is_a?`](https://ruby-doc.org/core-2.5.0/Object.html#method-i-is_a-3F).__
 
 ### GET `/quiz/:id/results/:result_id`
 
+The last part of the application is the route that will show the person the result of the decision tree. In this route, you'll need to find the quiz and load it into an instance variable using the `id` from the URL, and then load the result into an instance variable. You can find the result using the quiz instance method `#find_result`, passing in the `result_id` from `params` in the URL. Render the `app/views/result.html.erb` template and you're all done!
+
 ## Debugging
 
-Console
-Binding.pry
+When building your model methods, it might be helpful to insert a `binding.pry` into the methods as you build them.
+
+When building the controller, routes, and views, you can also insert a `binding.pry` in the route, which will pause the application and provide you a console to debug in the terminal. Once you exit the console, the request will continue.
 
 ## Getting Creative
 
+There's lots of room to customize this application from theming it with styles to implementing decisions trees that mean something to you.
+
 ### Themes
+
+Use themes from WrapBootstrap.com, Bootstrap.com, and more.
 
 ### Decision Tree Ideas
 
+In terms of the decision trees you can build, it can really be anything.
+
+- What college should I go to?
+- What should I major in?
+- What movie should I watch tonight?
+- What should I do if I'm being bullied?
+
+You can provide as many questions and results as you want. You can even build multiple quizzes in the same application.
+
 ## Deploying to Heroku
 
-You can fork this repository
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Whenever you're ready, you can deploy this application to [Heroku](https://heroku.com). Make sure you have a heroku account and then try [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
