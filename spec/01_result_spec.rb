@@ -7,4 +7,7 @@ RSpec.describe "app/models/result.rb" do
     expect(Result).to be_a(Class), "Did you define an Result class in app/models/result.rb?"
   end
 
+  it 'has an id and text attribute' do
+    r = Result.new
+
 end
