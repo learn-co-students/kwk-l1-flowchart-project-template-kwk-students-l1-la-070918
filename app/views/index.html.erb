@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>KWK Advice Template</title>
-</head>
+<h1>What do you need advice on?</h1>
 
-<body>
-  <h1>What do you need advice on?</h1>
-  
-  <ul>
-    <% Quiz.all.each do |quiz| %>
-    <li><a href="/quiz/<%= quiz.id %>"><%= quiz.title %></a></li>
-    <% end %>
-  </ul>
-
-</body>
-
-</html>
+<ul>
+  <% Quiz.all.each do |quiz| %>
+  <li><a href="/quiz/<%= quiz.id %>"><%= quiz.title %></a></li>
+  <% end %>
+</ul>

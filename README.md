@@ -158,6 +158,8 @@ Once you have your models all setup, you'll want to build out the data for your 
 
 Define your quizzes, questions, and results in this file so that when your Sinatra application loads, it actually has data. If you get an error when booting up your application, check the backtrace and see if it's originating from `data/seed.rb`.
 
+Don't create the entire quiz, questions, and results, just enough to start being able to build with, you can always add more later!
+
 ## Controllers and Views
 
 Once our model layer is complete, the next step is to build out our controller, routes, and views. The application is going to respond to 4 URLs and provide 3 views. You can create all your routes in `ApplicationController` defined in `app/controllers/application_controller.rb`
@@ -248,13 +250,17 @@ When building your model methods, it might be helpful to insert a `binding.pry` 
 
 When building the controller, routes, and views, you can also insert a `binding.pry` in the route, which will pause the application and provide you a console to debug in the terminal. Once you exit the console, the request will continue.
 
+Sinatra can throw some weird errors if your ERB views are broken, especially if you're missing closing or opening `<%` `%>` tags. Try to read the Sinatra backtrace in the log or look at the error Sinatra is throwing in the browser.
+
+__In general, the less code you add before running the tests or hitting refresh in the browser, the easier it will be to debug.__
+
 ## Getting Creative
 
 There's lots of room to customize this application from theming it with styles to implementing decisions trees that mean something to you.
 
 ### Themes
 
-Use themes from WrapBootstrap.com, Bootstrap.com, and more.
+Use themes from WrapBootstrap.com, Bootstrap.com, and more. The [Bootstrap](#) Branch of this project includes HTML and CSS using Bootstrap.
 
 ### Decision Tree Ideas
 

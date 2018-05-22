@@ -12,6 +12,10 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.order = 'default'
+
+  config.after(:each) do
+    Quiz.class_variable_set(:@@all, [])
+  end
 end
 
 def app
