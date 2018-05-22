@@ -25,10 +25,14 @@ describe 'ApplicationController' do
   end
 
   context 'The Homepage - GET /' do
+    it 'has an index view in "app/views/index.html.erb"' do
+      expect(File.exists?("app/views/index.html.erb")).to be_true, "Did you create a view in 'app/views/index.html.erb'?"
+    end
+
     it 'renders the index view' do
       expect_any_instance_of(ApplicationController).to receive(:erb).with(/index/)
 
-      get '/'
+      get '/', "Did you render the index.html.erb view in the '/' route with erb :'index.html'?"
     end
 
     it "responds with a 200 status code" do
