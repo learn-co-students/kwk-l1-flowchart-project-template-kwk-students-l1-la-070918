@@ -20,34 +20,38 @@ RSpec.describe "app/models/quiz.rb" do
 
   it 'has attributes of questions and results' do
     q = Quiz.new("1", "Should I go out tonight?")
-    expect(q).to respond_to(:questions, :questions=)
-    expect(q).to respond_to(:results, :results=)
+    expect(q).to respond_to(:questions, :questions=), "Did you set an attr_accessor of :questions?"
+    expect(q).to respond_to(:results, :results=), "Did you set an attr_accessor of :results?"
   end
 
   it 'has initializes questions and results to empty arrays' do
     q = Quiz.new("1", "Should I go out tonight?")
-    expect(q.questions).to eq([])
-    expect(q.results).to eq([])
+    expect(q.questions).to eq([]), "Did you set @questions to an empty array upon initialization inside def initialize?"
+    expect(q.results).to eq([]), "Did you set @results to an empty array upon initialization inside def initialize?"
+  end
+
+  it 'defines a class variable @@all set to an empty array within the class body' do
+    expect(Quiz.class_variable_get(:@@all)).to be_a(Array), "Did you set @@all within the class body to an empty array?"
   end
 
   it 'persists new instances into a class variable @@all upon initialization' do
     q = Quiz.new("1", "Should I go out tonight?")
 
-    expect(Quiz.class_variable_get(:@@all)).to include(q)
+    expect(Quiz.class_variable_get(:@@all)).to include(q), "Did you push self into the @@all array in initialize?"
   end
 
   it 'exposes the instances in class variable @@all through a class method Quiz.all' do
     q = Quiz.new("1", "Should I go out tonight?")
     Quiz.class_variable_set(:@@all, [q])
 
-    expect(Quiz.all).to include(q)
+    expect(Quiz.all).to include(q), "Did you build a class method def self.all that reads from @@all?"
   end
 
   it 'has a class method to find instances by id' do
     q = Quiz.new("1", "Should I go out tonight?")
     q2  = Quiz.new("2", "What should I wear?")
 
-    expect(Quiz.find_by_id(1)).to eq(q)
+    expect(Quiz.find_by_id(1)).to eq(q), "Did you build a class method def self.find_by_id that looks through @@all and returns the matching Quiz by id?"
   end
 
   it 'can add questions to @questions through #add_question' do
