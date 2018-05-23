@@ -26,33 +26,37 @@ describe 'ApplicationController' do
 
   context 'The Homepage - GET /' do
     it 'has an index view in "app/views/index.html.erb"' do
-      expect(File.exists?("app/views/index.html.erb")).to be_true, "Did you create a view in 'app/views/index.html.erb'?"
+      expect(File.exists?("app/views/index.html.erb")).to be_truthy, "Did you create a view in 'app/views/index.html.erb'?"
     end
 
     it 'renders the index view' do
       expect_any_instance_of(ApplicationController).to receive(:erb).with(/index/)
 
-      get '/', "Did you render the index.html.erb view in the '/' route with erb :'index.html'?"
+      get '/'
     end
 
     it "responds with a 200 status code" do
       get '/'
 
-      expect(last_response.status).to eq(200)
+      expect(last_response.status).to eq(200), "Something seems broken with the '/' route. The response status code was #{last_response.status}"
     end
 
     it 'includes a link to the quiz in the index view' do
       visit '/'
 
-      expect(page).to have_link("SAMPLE: Should I go out tonight?", :href => /quiz\/1/)
+      expect(page).to have_link("SAMPLE: Should I go out tonight?", :href => /quiz\/1/), "Did you create a link to the quizzes with the correct HREF in index.html.erb?"
     end
   end
 
   context 'A Quiz - GET /quiz/:id' do
     it 'loads the quiz from the ID in the URL using Quiz.find_by_id' do
-      expect(Quiz).to receive(:find_by_id).with("1")
+      expect(Quiz).to receive(:find_by_id).with("1"), "Did you call Quiz.find_by_id(params[:id]) in '/quiz/:id'?"
 
       get '/quiz/1'
+    end
+
+    it 'has a quiz view in "app/views/quiz.html.erb"' do
+      expect(File.exists?("app/views/quiz.html.erb")).to be_truthy, "Did you create a view in 'app/views/quiz.html.erb'?"
     end
 
     it 'renders the quiz view' do
@@ -64,38 +68,33 @@ describe 'ApplicationController' do
     it "responds with a 200 status code" do
       get '/quiz/1'
 
-      expect(last_response.status).to eq(200)
+      expect(last_response.status).to eq(200), "Something seems broken with the '/quiz/:id' route. The response status code was #{last_response.status}"
     end
 
     it "includes the first question's text in the HTML" do
       visit '/quiz/1'
 
-      expect(page).to have_text("Are you tired?")
+      expect(page).to have_text("Are you tired?"), "Did you include the Quiz title in the view quiz.html.erb?"
     end
 
     context 'The Quiz Form' do
       it "has a form to submit the answer with an action pointing to the /quiz/:id" do
         visit '/quiz/1'
 
-        expect(page).to have_css("form[action*='quiz/1']")
+        expect(page).to have_css("form[action*='quiz/1']"), "Did you create a form tag with the appropriate action in quiz.html.erb?"
       end
 
       it "has radio buttons for each answer" do
         visit '/quiz/1'
 
-        expect(page).to have_field("next_step", :type => 'radio')
-        expect(page).to have_field("next_step", :type => 'radio')
+        expect(page).to have_field("next_step", :type => 'radio'), "Did you include 'radio' inputs for the question answers with a name of 'next_step?'"
       end
 
       it "the radio buttons have values for the next step of question" do
         visit '/quiz/1'
 
-        expect(page).to have_field("next_step", :type => 'radio', :with => "Q2")
-        expect(page).to have_field("next_step", :type => 'radio', :with => "R2")
-      end
-
-      it "the radio buttons have a name of next_step" do
-        visit '/quiz/1'
+        expect(page).to have_field("next_step", :type => 'radio', :with => "Q2"), "Did you fill in the value of the question answers as the value of the radio inputs?"
+        expect(page).to have_field("next_step", :type => 'radio', :with => "R2"), "Did you fill in the value of the question answers as the value of the radio inputs?"
       end
 
       it "has a submit button" do
