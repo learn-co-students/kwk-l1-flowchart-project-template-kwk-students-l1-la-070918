@@ -1,7 +1,0 @@
-<h1>What do you need advice on?</h1>
-
-<ul>
-  <% Quiz.all.each do |quiz| %>
-  <li><a href="/quiz/<%= quiz.id %>"><%= quiz.title %></a></li>
-  <% end %>
-</ul>
