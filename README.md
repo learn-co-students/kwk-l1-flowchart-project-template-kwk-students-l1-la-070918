@@ -260,7 +260,7 @@ There's lots of room to customize this application from theming it with styles t
 
 ### Themes
 
-Use themes from WrapBootstrap.com, Bootstrap.com, and more. The [Bootstrap](#) Branch of this project includes HTML and CSS using Bootstrap.
+Use themes from WrapBootstrap.com, Bootstrap.com, and more. The [Bootstrap](https://github.com/learn-co-curriculum/kwk-l1-flowchart-project-template/tree/bootstrap-example) Branch of this project includes HTML and CSS using Bootstrap.
 
 ### Decision Tree Ideas
 
