@@ -49,7 +49,7 @@ question_1.answers = {
 }
 ```
 
-This question instance would be the first question in the decision tree, "Are you tired?". The the possible answers for the question are in the form of a hash, where the key of the hash is the answer's text, and the value of that key, is pointing to the next step of the decision tree. Our HTML will provide to answers to the question, the first one, "Yes", the second one, "No". If the person selects "Yes", our application will direct them to "R1", or result one, telling them, "No, don't go out." If they select "No", our application will continue them to "Q2", or the second question.
+This question instance would be the first question in the decision tree, "Are you tired?". The possible answers for the question are in the form of a hash, where the key of the hash is the answer's text, and the value of that key, is pointing to the next step of the decision tree. Our HTML will provide two answers to the question, the first one, "Yes", the second one, "No". If the person selects "Yes", our application will direct them to "R1", or result one, telling them, "No, don't go out." If they select "No", our application will continue them to "Q2", or the second question.
 
 Rather than manually assign these attributes when we build questions, we'll also have the Question class accept these upon initialization in the following pattern.
 
